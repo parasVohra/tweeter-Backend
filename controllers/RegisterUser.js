@@ -1,10 +1,7 @@
-const mongoose = require("mongoose");
-const express = require("express");
-const router = express.Router();
 const { User, validate } = require("../models/user");
 const _ = require("lodash");
 
-router.post("/", async (req, res) => {
+export const registerUser = async (req, res) => {
   try {
     const { error } = validate(req.body);
     if (error) return res.status(400).send(error.details[0].message);
@@ -18,9 +15,7 @@ router.post("/", async (req, res) => {
       res.send(r);
     });
   } catch (error) {
-    //console.log(error);
+    console.log(error);
     res.status(400).send(error);
   }
-});
-
-module.exports = router;
+};
